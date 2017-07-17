@@ -21,3 +21,4 @@ jobs:
           tags: true
           repo: flyte/pi-mqtt-gpio
         distributions: sdist bdist_wheel
+    - python: 3.4
