@@ -7,7 +7,7 @@ pi_tests:
     - virtualenv ve
     - . ve/bin/activate
     - pip install -r requirements.txt
-    - pip install py.test
+    - pip install pytest
     - py.test tests/pi
   tags:
       - raspberrypi
