@@ -1,13 +1,66 @@
 stages:
   - test
 
+generic_tests_27:
+  image: python:2.7
+  stage: test
+  script:
+    - apt-get update
+    - apt-get install -y python-dev
+    - pip install tox
+    - tox -e py27
+  tags:
+    - docker
+
+generic_tests_34:
+  image: python:3.4
+  stage: test
+  script:
+    - apt-get update
+    - apt-get install -y python-dev
+    - pip install tox
+    - tox -e py34
+  tags:
+    - docker
+
+generic_tests_35:
+  image: python:3.5
+  stage: test
+  script:
+    - apt-get update
+    - apt-get install -y python-dev
+    - pip install tox
+    - tox -e py35
+  tags:
+    - docker
+
+generic_tests_36:
+  image: python:3.6
+  stage: test
+  script:
+    - apt-get update
+    - apt-get install -y python-dev
+    - pip install tox
+    - tox -e py36
+  tags:
+    - docker
+
+flake8:
+  image: python:3.6
+  stage: test
+  script:
+    - pip install tox
+    - tox -e flake8
+  tags:
+    - docker
+
 pi_tests:
   stage: test
   script:
     - virtualenv ve
     - . ve/bin/activate
     - pip install -r requirements.txt
-    - pip install pytest
+    - pip install pytest RPi.GPIO
     - make schema
     - export PYTHONPATH=`pwd`
     - py.test tests/pi

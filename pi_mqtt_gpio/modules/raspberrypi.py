@@ -42,7 +42,7 @@ class GPIO(GenericGPIO):
         self.io.output(pin, value)
 
     def get_pin(self, pin):
-        return self.io.input(pin)
+        return bool(self.io.input(pin))
 
     def cleanup(self):
         self.io.cleanup()
