@@ -2,7 +2,7 @@ stages:
   - test
 
 pi_tests:
-  state: test
+  stage: test
   script:
     - virtualenv ve
     - . ve/bin/activate
