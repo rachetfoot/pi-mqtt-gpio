@@ -1,4 +1,10 @@
 language: python
+
+stages:
+  - test
+  - name: publish
+    if: tag =~ ^\d+\.\d+\.\d+$
+
 jobs:
   include:
 
