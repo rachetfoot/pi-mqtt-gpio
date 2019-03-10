@@ -352,7 +352,7 @@ def initialise_sensor_input(sens_conf, sensor):
     sensor.setup_sensor(sens_conf)
 
 
-def sensor_timer_thread(SENSOR_MODULES, sensor_inputs, topic_prefix):
+def sensor_timer_thread(sensor_inputs, topic_prefix):
     """
     Timer thread for the sensors
     To reduce cpu usage, there is only one cyclic thread for all sensors.
@@ -485,11 +485,7 @@ if __name__ == "__main__":
         if sensor_inputs:
             sensor_thread = threading.Thread(
                 target=sensor_timer_thread,
-                kwargs={
-                    "SENSOR_MODULES": SENSOR_MODULES,
-                    "sensor_inputs": sensor_inputs,
-                    "topic_prefix": topic_prefix,
-                },
+                kwargs={"sensor_inputs": sensor_inputs, "topic_prefix": topic_prefix},
             )
             sensor_thread.name = "pi-mqtt-gpio_SensorReader"
             # stops the thread, when main program terminates
