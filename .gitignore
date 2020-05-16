@@ -1,3 +1,6 @@
+.pytest_cache
+.vscode
+.ignore
 .idea
 
 # Byte-compiled / optimized / DLL files
@@ -46,6 +49,7 @@ nosetests.xml
 coverage.xml
 *,cover
 .hypothesis/
+pytests.xml
 
 # Translations
 *.mo
@@ -89,3 +93,10 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+#Kate
+*.kate-swp
+
+# User's Config File
+config.yml
+
