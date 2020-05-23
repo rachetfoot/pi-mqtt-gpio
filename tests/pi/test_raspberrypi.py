@@ -1,8 +1,7 @@
 import pkg_resources
 
-from pi_mqtt_gpio.modules import raspberrypi, PinDirection, PinPullup
+from pi_mqtt_gpio.modules import PinDirection, PinPullup, dht22, raspberrypi
 from pi_mqtt_gpio.server import install_missing_requirements
-
 
 # There is a physical jumper between these two pins on the test Pi
 JUMPER_PINS = (22, 27)
@@ -23,3 +22,22 @@ def test_digital_io():
     gpio.set_pin(pin_out, False)
     assert gpio.get_pin(pin_in) is False
     gpio.cleanup()
+
+
+def test_temperature():
+    """
+    Gets the temperature from the DHT22 device.
+    """
+    dht = dht22.Sensor(dict(type="AM2302", pin=14))
+    temp = dht.get_value(dict(type="temperature"))
+    assert isinstance(temp, float)
+
+
+def test_humidity():
+    """
+    Gets the temperature from the DHT22 device.
+    """
+    dht = dht22.Sensor(dict(type="AM2302", pin=14))
+    humidity = dht.get_value(dict(type="humidity"))
+    assert isinstance(humidity, float)
+
