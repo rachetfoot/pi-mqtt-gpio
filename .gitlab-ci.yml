@@ -57,7 +57,7 @@ stages:
 pi_tests:
   stage: test
   script:
-    - . /home/pi/mqtt-io-tests/ve/bin/activate
+    - . /home/gitlab-runner/mqtt-io-tests/ve/bin/activate
     - pip install -r requirements.txt
     - pip install pytest RPi.GPIO
     - make schema
