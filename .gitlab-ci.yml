@@ -65,4 +65,4 @@ pi_tests:
     - export PYTHONPATH=`pwd`
     - py.test tests/pi
   tags:
-      - raspberrypi
+    - mqttgpio
