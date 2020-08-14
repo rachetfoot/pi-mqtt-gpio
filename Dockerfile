@@ -1,19 +1,24 @@
-FROM python:3.6-alpine
+FROM python:3.7-alpine
 
 ENV LANG C.UTF-8  
 ENV LC_ALL C.UTF-8  
 
-RUN apk add build-base
+RUN apk add --no-cache build-base gcc make musl-dev linux-headers
 RUN pip install --no-cache-dir pipenv
 
-WORKDIR /home/mqttgpio
-RUN adduser --disabled-password --gecos "" --home "$(pwd)" --no-create-home -s /bin/bash mqttgpio
-RUN addgroup -g 997 gpio
-RUN addgroup mqttgpio gpio
-RUN chown -R mqttgpio .
-USER mqttgpio
+WORKDIR /app
 
-COPY --chown=mqttgpio Pipfile ./
+#WORKDIR /home/mqttgpio
+#RUN adduser --disabled-password --gecos "" --home "$(pwd)" --no-create-home -s /bin/bash mqttgpio
+#RUN addgroup -g 997 gpio
+#RUN addgroup mqttgpio gpio
+#RUN chown -R mqttgpio .
+#RUN addgroup i2c && chown :i2c /dev/i2c-1 \
+#  && chmod g+rw /dev/i2c-1 \
+#  && usermod -aG i2c mqttgpio
+#USER mqttgpio
+
+COPY Pipfile ./
 RUN pipenv install --three --deploy
 
 COPY pi_mqtt_gpio pi_mqtt_gpio

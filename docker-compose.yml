@@ -1,0 +1,14 @@
+version: '3.6'
+services:
+  pi-mqtt-gpio:
+    build: 
+      context: .
+#      context: https://github.com/rachetfoot/pi-mqtt-gpio.git#1cf3662
+#      dockerfile: Dockerfile
+    container_name: pi-mqtt-gpio
+    privileged: true
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - ./config.yml:/config.yml
+
